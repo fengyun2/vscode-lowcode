@@ -26,10 +26,10 @@
     "pretest": "pnpm run compile && pnpm run lint",
     "lint": "eslint src --ext ts",
     "test": "vscode-test",
-    "web:dev": "vite",
-    "web:build": "vite build",
-    "web:serve": "vite preview",
-    "web:lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+    "web:dev": "cd src/web && pnpm web:dev",
+    "web:build": "cd src/web && pnpm web:build",
+    "web:serve": "cd src/web && pnpm web:preview",
+    "web:lint": "cd src/web && pnpm web:lint"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.6",
