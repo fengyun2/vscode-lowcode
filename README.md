@@ -69,3 +69,8 @@ You can author your README using Visual Studio Code. Here are some useful editor
 * [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
 
 **Enjoy!**
+
+## 参考文章
+
+1. [Your First Extension](https://code.visualstudio.com/api/get-started/your-first-extension)
+2. [VSCode 插件开发-从零到WebView+React](https://juejin.cn/post/7157283214472511518)
