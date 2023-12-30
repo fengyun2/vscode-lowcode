@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import OcrUploader from './components/OcrUploader'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -13,6 +14,7 @@ function App() {
           {count}
         </span>
       </p>
+      <OcrUploader />
     </div>
   )
 

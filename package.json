@@ -26,10 +26,10 @@
     "pretest": "pnpm run compile && pnpm run lint",
     "lint": "eslint src --ext ts",
     "test": "vscode-test",
-    "web:dev": "cd src/web && pnpm web:dev",
-    "web:build": "cd src/web && pnpm web:build",
-    "web:serve": "cd src/web && pnpm web:preview",
-    "web:lint": "cd src/web && pnpm web:lint"
+    "web:dev": "cd src/web && pnpm dev",
+    "web:build": "cd src/web && pnpm build",
+    "web:serve": "cd src/web && pnpm preview",
+    "web:lint": "cd src/web && pnpm lint"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.6",
