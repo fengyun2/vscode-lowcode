@@ -31,7 +31,8 @@ const PasteUpload = (props: PasteUploadProps) => {
         // Create a unique identifier for the file
         file.uid = `paste-${Date.now()}`;
         // Use the fileList state to update and trigger upload logic
-        setFileList((prevFileList) => [...prevFileList, file as UploadFile]);
+        // setFileList((prevFileList) => [...prevFileList, file as UploadFile]);
+        setFileList(() => [file])
         props.onUploadSuccess && props.onUploadSuccess(file as RcFile);
         message.success("Image file pasted!");
       }
@@ -76,6 +77,7 @@ const PasteUpload = (props: PasteUploadProps) => {
       // });
       // console.log(newFileList, 'handleChange =====> ')
       // setFileList(newFileList);
+      setFileList([info.file])
       props.onUploadSuccess && props.onUploadSuccess(info.file as RcFile);
     },
     []
