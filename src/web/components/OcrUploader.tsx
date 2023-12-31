@@ -32,11 +32,11 @@ const OcrUploader: React.FC<IOcrUploaderProps> = () => {
     setText("");
 
     // 1. 识别简体中文+繁体中文+英文("eng+chi_sim+chi_tra")，但是目前识别简体中文很多识别不准
-    // 2. 设置离线加载本地语言包及tesseract库
+    // 2.  TODO: 设置离线加载本地语言包及tesseract库，在vscode插件中会报错
     const worker = await createWorker("eng+chi_sim", 1, {
-      workerPath: "/tesseract/tesseract.js/worker.min.js",
-      langPath: "/tesseract/tesseract.js/lang-data",
-      corePath: "/tesseract/tesseract.js-core",
+      // workerPath: "/tesseract/tesseract.js/worker.min.js",
+      // langPath: "/tesseract/tesseract.js/lang-data",
+      // corePath: "/tesseract/tesseract.js-core",
       logger: (m) => console.log(m),
     });
 
