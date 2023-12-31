@@ -30,6 +30,8 @@
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
     "antd": "^5.12.5",
+    "axios": "^1.6.3",
+    "react-router-dom": "^6.21.1",
     "tesseract.js": "^5.0.4",
     "tesseract.js-core": "^5.0.0"
   }

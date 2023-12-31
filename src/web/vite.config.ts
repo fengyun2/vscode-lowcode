@@ -9,5 +9,20 @@ export default defineConfig({
     alias: {
       // '@': resolve(),
     },
+  },
+  server: {
+    // port: 3000,
+    // proxy: {
+    //   'oauth/': {
+    //     target: 'https://aip.baidubce.com/oauth',
+    //     changeOrigin: true,
+    //     rewrite: (path) => path.replace(/^\/oauth/, ''),
+    //   },
+    //   'rpc/': {
+    //     target: 'https://aip.baidubce.com/rpc',
+    //     changeOrigin: true,
+    //     rewrite: (path) => path.replace(/^\/rpc/, ''),
+    //   },
+    // },
   }
 });

@@ -29,7 +29,8 @@
     "web:dev": "cd src/web && pnpm dev",
     "web:build": "cd src/web && pnpm build",
     "web:serve": "cd src/web && pnpm preview",
-    "web:lint": "cd src/web && pnpm lint"
+    "web:lint": "cd src/web && pnpm lint",
+    "server:debug": "cd src/chat-server && pnpm server:debug"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.6",

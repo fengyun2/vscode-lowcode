@@ -3,3 +3,32 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+.menu-nav {
+  background: #333;
+  color: #fff;
+  padding: 10px;
+}
+
+.menu-nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.menu-nav li {
+  margin: 0 15px;
+}
+
+.menu-nav li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s ease-in-out;
+}
+
+.menu-nav li a:hover {
+  color: #00bfff;
+}
