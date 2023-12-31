@@ -1,10 +1,24 @@
 import  { useCallback, useState, useEffect } from "react";
-import { Upload, message } from "antd";
+import { Upload, message, Image } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 import type { UploadProps } from "antd";
 import type { RcFile, UploadFile, UploadChangeParam } from "antd/lib/upload/interface";
 
 const { Dragger } = Upload;
+
+// 读取文件并转换为 base64 编码的字符串
+function readFileAsBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      resolve(reader.result as string);
+    };
+    reader.onerror = (error) => {
+      reject(error);
+    };
+  });
+}
 
 export interface PasteUploadProps extends UploadProps {
   onPaste?: (event: ClipboardEvent) => void;
@@ -13,6 +27,8 @@ export interface PasteUploadProps extends UploadProps {
 
 const PasteUpload = (props: PasteUploadProps) => {
   const [fileList, setFileList] = useState<UploadFile[]>([]);
+  const [img, setImg] = useState<string>();
+
   const handlePaste = useCallback((event: ClipboardEvent) => {
     // (event: React.ClipboardEvent<HTMLDivElement>) => {
     // const items = (event.clipboardData || event.originalEvent.clipboardData)
@@ -33,6 +49,13 @@ const PasteUpload = (props: PasteUploadProps) => {
         // Use the fileList state to update and trigger upload logic
         // setFileList((prevFileList) => [...prevFileList, file as UploadFile]);
         setFileList(() => [file])
+        readFileAsBase64(file)
+      .then((base64Url) => {
+        setImg(base64Url);
+      })
+      .catch((error: Error) => {
+        console.error(error, " 图片在线预览失败");
+      });
         props.onUploadSuccess && props.onUploadSuccess(file as RcFile);
         message.success("Image file pasted!");
       }
@@ -51,9 +74,8 @@ const PasteUpload = (props: PasteUploadProps) => {
   const handleRemove: UploadProps["onRemove"] = useCallback(
     (file: UploadFile) => {
       console.log("Remove file:", file);
-      setFileList((prevFileList) =>
-        prevFileList.filter((item) => item.uid !== file.uid)
-      );
+      setFileList([]);
+      setImg("");
       props?.onRemove && props.onRemove(file);
     },
     []
@@ -61,7 +83,8 @@ const PasteUpload = (props: PasteUploadProps) => {
 
   const handleChange: UploadProps["onChange"] = useCallback(
     (info: UploadChangeParam<UploadFile>) => {
-      console.log("Change file:", info.file);
+      const file = info.file
+      console.log("Change file:", file);
       // let newFileList = [...info.fileList];
       // // 只保留最后一个文件
       // // newFileList = newFileList.slice(-1);
@@ -77,8 +100,15 @@ const PasteUpload = (props: PasteUploadProps) => {
       // });
       // console.log(newFileList, 'handleChange =====> ')
       // setFileList(newFileList);
-      setFileList([info.file])
-      props.onUploadSuccess && props.onUploadSuccess(info.file as RcFile);
+      setFileList([file])
+      readFileAsBase64(file as RcFile)
+      .then((base64Url) => {
+        setImg(base64Url);
+      })
+      .catch((error: Error) => {
+        console.error(error, " 图片在线预览失败");
+      });
+      props.onUploadSuccess && props.onUploadSuccess(file as RcFile);
     },
     []
   );
@@ -100,11 +130,16 @@ const PasteUpload = (props: PasteUploadProps) => {
       onRemove={handleRemove}
       onChange={handleChange}
     >
-      <p className="ant-upload-drag-icon">
+      {
+        img ? <Image preview={false} style={{maxWidth: '100%'}} src={img} /> : (<>
+<p className="ant-upload-drag-icon">
         <InboxOutlined />
       </p>
       <p className="ant-upload-text">点击或拖拽文件到此区域上传</p>
       <p className="ant-upload-hint">支持单个或批量上传</p>
+        </>)
+      }
+
     </Dragger>
   );
 };
