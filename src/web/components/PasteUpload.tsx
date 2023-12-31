@@ -92,7 +92,9 @@ const PasteUpload = (props: PasteUploadProps) => {
 
   return (
     <Dragger
+      maxCount={1}
       multiple={false}
+      showUploadList={false}
       fileList={fileList}
       beforeUpload={beforeUpload}
       onRemove={handleRemove}
