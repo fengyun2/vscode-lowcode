@@ -15,6 +15,7 @@ import type { RcFile } from "antd/lib/upload/interface";
 import PasteUpload, { PasteUploadProps } from "./PasteUpload";
 
 // TODO: [基于tesseract.js的vue应用离线版](https://juejin.cn/post/6953532703547490318)
+// TODO: [Vue3+NodeJS 接入文心一言， 发布一个 VSCode 大模型问答插件](https://cloud.tencent.com/developer/article/2358295)
 
 interface IOcrUploaderProps {
   // 如果需要，这里可以定义组件的属性
