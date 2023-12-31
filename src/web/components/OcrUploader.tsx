@@ -25,7 +25,7 @@ const OcrUploader: React.FC<IOcrUploaderProps> = () => {
     const worker = await createWorker("eng+chi_sim+chi_tra", 1, {
       workerPath: "/tesseract/tesseract.js/worker.min.js",
       langPath: "/tesseract/tesseract.js/lang-data",
-      corePath: "/tesseract/tesseract.js-core/tesseract-core.wasm.js",
+      corePath: "/tesseract/tesseract.js-core",
       logger: (m) => console.log(m),
     });
 
